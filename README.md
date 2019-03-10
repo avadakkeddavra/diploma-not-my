@@ -36,3 +36,8 @@ In a `database/migration.js` you should to create a mysql connection from localh
 You can configure it in `.env`
 
 
+### Instalation
+`cd web`
+`npm install`
+`npm install nodemon -g`
+`nodemon`
