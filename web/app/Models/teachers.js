@@ -12,13 +12,16 @@ module.exports = function (sequelize,Sequelize) {
                 key: 'id'
             }
         },
+        token: {
+          type: Sequelize.STRING
+        },
         position: {
             type: Sequelize.STRING
         }
     };
     
     let ModelOptions = {
-        timestaps: false
+        timestamps: false
     };
     
     return sequelize.define('teachers', TeachersSchema, ModelOptions);

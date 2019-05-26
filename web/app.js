@@ -1,10 +1,12 @@
 require('module-alias/register');
+const cors = require('cors');
 const express = require('express'); // Framework
 require('dotenv').config();
 const app = express();
 const bodyParser = require('body-parser');
 const mailer = require('express-mailer');
 
+app.use(cors());
 if(process.env.DB_NAME && process.env.DB_HOST && process.env.DB_PASSWORD && process.env.DB_USER)
 {
     require('@model/connection');
@@ -29,6 +31,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(require('./routes/web'));
+
+app.use((err, req, res, next) => {
+    res.status(400).send({
+        ...err,
+        name: err.name,
+    })
+})
 
 app.listen(process.env.PORT, function(err) {
     if(!err) {

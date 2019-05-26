@@ -3,15 +3,12 @@ version: '2'
 services:
 
   db:
-    image: mariadb
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password --skip-symbolic-links
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
       MYSQL_DATABASE: schedule
-    volumes:
-      - ./database:/var/lib/mysql
     ports:
       - 3300:3306
 
@@ -21,10 +18,11 @@ services:
     ports:
       - 6080:8080
 
-  # web:
-  #     build: ./
-  #     volumes:
-  #       - ./web:/home/project
-  #     ports:
-  #         - 3000:3000
-  #     command: nodemon app.js
+#  web:
+#     build: ./
+#     restart: always
+#     volumes:
+#       - "./web:/home/project"
+#     ports:
+#         - 3000:3000
+#     command: nodemon

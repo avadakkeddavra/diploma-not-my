@@ -12,7 +12,7 @@ module.exports = {
             class_id INT NULL,
             PRIMARY KEY (id),
             FOREIGN KEY fk_class(class_id) REFERENCES classes(id) ON DELETE SET NULL,
-            FOREIGN KEY fk_group(group_id) REFERENCES groups(id) ON DELETE CASCADE,
+            FOREIGN KEY fk_group(group_id) REFERENCES student_groups(id) ON DELETE CASCADE,
             FOREIGN KEY fk_lesson(lesson_id) REFERENCES lessons(id) ON DELETE CASCADE,
             FOREIGN KEY fk_lesson_time(lesson_time_id) REFERENCES lessons_time(id) ON DELETE SET NULL,
             FOREIGN KEY fk_day(day_id) REFERENCES days(id) ON DELETE SET NULL,

@@ -40,7 +40,7 @@ class AuthController extends Controller{
                                 name:user.name,
                                 id:user.id,
                                 email:user.email,
-                            }, process.env.JWT_SECRET, { expiresIn:'1h'});
+                            }, process.env.JWT_SECRET);
 
                             Response.send({success: true, token: token})
                         } else {

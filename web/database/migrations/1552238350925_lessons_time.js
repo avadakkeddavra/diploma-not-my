@@ -27,7 +27,6 @@ module.exports = {
                     cb();
                 })
             }
-            cb()
         })
     },
     "down": "DROP TABLE lessons_time"

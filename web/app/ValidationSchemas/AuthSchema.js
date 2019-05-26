@@ -8,7 +8,6 @@ const LoginSchema = Joi.object().keys({
 const RegisterSchema = Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
-    password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required()
 });
 
 const CreateResetLinkSchema = Joi.object().keys({
