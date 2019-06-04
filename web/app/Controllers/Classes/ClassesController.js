@@ -1,10 +1,16 @@
 const Controller = require('./../Controller');
-const {classes} = require('@model/index');
+const {classes, Sequelize: {Op}} = require('@model/index');
 
 class ClassesController extends Controller {
   static async getAll(req, res, next) {
     try {
-      const data = await classes.findAll();
+      const {search} = req.query;
+      const where = {
+        name: {
+          [Op.like]: `%${search || ''}%`
+        }
+      };
+      const data = await classes.findAll({where});
       res.send(data)
     } catch(E) {
       next(E);

@@ -8,6 +8,7 @@ const LoginSchema = Joi.object().keys({
 const RegisterSchema = Joi.object().keys({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
+    password: Joi.string().required()
 });
 
 const CreateResetLinkSchema = Joi.object().keys({

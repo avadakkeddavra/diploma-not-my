@@ -1,13 +1,20 @@
 const Controller = require('./../Controller');
-const {teachers, cafedras} = require('@model/index');
+const {teachers, cafedras, Sequelize: {Op}} = require('@model/index');
 const jwt = require('jsonwebtoken');
 
 class TeachersController extends Controller {
-  static async getAll(req, res, next) {
+  static async getAllWithPagintaion(req, res, next) {
     try {
       const limit = req.query.pageSize ? Number(req.query.pageSize) : 10;
       const offset = req.query.pageIndex ? Number(req.query.pageIndex) * limit : 0
+      const {search} = req.query;
+      const where = {
+        name: {
+          [Op.like]: `%${search ||  ''}%`
+        }
+      };
       const data = await teachers.findAndCountAll({
+        where,
         include: [
           {
             model: cafedras,
@@ -19,7 +26,29 @@ class TeachersController extends Controller {
       });
       res.send(data)
     } catch(E) {
-      throw E;
+      next(E);
+    }
+  }
+
+  static async getAll(req, res, next) {
+    try {
+      const {search} = req.query;
+      const where = {
+        name: {
+          [Op.like]: `%${search || ''}%`
+        }
+      };
+      const data = await teachers.findAll({
+        where,
+        include: [
+          {
+            model: cafedras,
+            as: 'cafedra'
+          }
+        ],
+      });
+      res.send(data)
+    } catch(E) {
       next(E);
     }
   }

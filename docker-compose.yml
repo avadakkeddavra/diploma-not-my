@@ -4,20 +4,28 @@ services:
 
   db:
     image: mysql
-    command: --default-authentication-plugin=mysql_native_password --skip-symbolic-links
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: schedule
     ports:
       - 3300:3306
+    volumes:
+      - 'D:\\Alex\\diploma-not-my\\database:/var/lib/mysql'
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 6080:8080
-
+  front:
+    image: httpd
+    volumes:
+      - ./front/scheduler:/usr/local/apache2/htdocs/
+      - ./front/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - 5080:80
 #  web:
 #     build: ./
 #     restart: always

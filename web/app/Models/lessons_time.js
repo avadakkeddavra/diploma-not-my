@@ -2,22 +2,11 @@
 module.exports = function (sequelize,Sequelize) {
 
     let UsersSchema = {
-        name: {
-            type: Sequelize.STRING(64)
+        start: {
+            type: Sequelize.TIME
         },
-        cafedra_id: {
-            type: Sequelize.INTEGER,
-            references: {
-                model: 'cafedras',
-                key: 'id'
-            }
-        },
-        teacher_id: {
-            type: Sequelize.INTEGER,
-            references: {
-                model: 'teachers',
-                key: 'id'
-            }
+        end: {
+            type: Sequelize.TIME
         }
     };
 

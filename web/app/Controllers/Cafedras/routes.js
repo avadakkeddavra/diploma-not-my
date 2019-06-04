@@ -3,6 +3,7 @@ const Controller = require('./CafedrasController');
 const validate = require('./../../../utils/validate');
 const schema = require('./schema');
 
+Router.get('/all', Controller.getAllWithPaginatoin);
 Router.get('/', Controller.getAll);
 Router.post('/', validate(schema.create), Controller.create);
 Router.delete('/:id', Controller.delete);

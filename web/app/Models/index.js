@@ -26,6 +26,7 @@ require('./relations/user')(db);
 require('./relations/reset_password')(db);
 require('./relations/cafedras')(db);
 require('./relations/teachers')(db);
+require('./relations/schedule')(db);
 
 
 module.exports = db;

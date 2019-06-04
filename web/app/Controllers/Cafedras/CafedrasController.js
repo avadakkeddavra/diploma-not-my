@@ -2,6 +2,29 @@ const Controller = require('./../Controller');
 const {cafedras, teachers, student_groups} = require('@model/index');
 
 class CafedrasController extends Controller {
+  static async getAllWithPaginatoin(req, res, next) {
+    try {
+      const limit = req.query.pageSize ? Number(req.query.pageSize) : 10;
+      const offset = req.query.pageIndex ? Number(req.query.pageIndex) * limit : 0
+      const data = await cafedras.findAndCountAll({
+        include: [
+          {
+            model: teachers,
+            as: 'teachers'
+          },
+          {
+            model: student_groups,
+            as: 'groups'
+          }
+        ],
+        limit,
+        offset
+      });
+      res.send(data)
+    } catch(E) {
+      next(E);
+    }
+  }
   static async getAll(req, res, next) {
     try {
       const data = await cafedras.findAll({
@@ -14,9 +37,9 @@ class CafedrasController extends Controller {
             model: student_groups,
             as: 'groups'
           }
-        ]
+        ],
       });
-      res.send(data)
+      res.send(data);
     } catch(E) {
       next(E);
     }
