@@ -3,6 +3,7 @@ const Controller = require('./ClassesController');
 const validate = require('./../../../utils/validate');
 const schema = require('./schema');
 
+Router.get('/all', Controller.getAllWithPagination);
 Router.get('/', Controller.getAll);
 Router.post('/', validate(schema.create), Controller.create);
 Router.delete('/:id', Controller.delete);

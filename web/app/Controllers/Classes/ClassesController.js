@@ -1,7 +1,29 @@
 const Controller = require('./../Controller');
-const {classes, Sequelize: {Op}} = require('@model/index');
+const {classes, Sequelize: {Op}} = require('../../Models/index');
 
 class ClassesController extends Controller {
+  static async getAllWithPagination(req, res, next) {
+    try {
+      const limit = req.query.pageSize ? Number(req.query.pageSize) : 10;
+      const offset = req.query.pageIndex ? Number(req.query.pageIndex) * limit : 0;
+      const {search} = req.query;
+      const where = {
+        name: {
+          [Op.like]: `%${search || ''}%`
+        }
+      };
+      console.log(limit);
+      const data = await classes.findAndCountAll({
+          where,
+          limit,
+          offset
+      });
+      res.send(data);
+    } catch (e) {
+      throw e;
+      next(e);
+    }
+  }
   static async getAll(req, res, next) {
     try {
       const {search} = req.query;
