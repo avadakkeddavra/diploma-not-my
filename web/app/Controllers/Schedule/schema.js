@@ -17,7 +17,7 @@ module.exports = {
     day_id: Joi.number(),
     teacher_id: Joi.number(),
     semester: Joi.number(),
-    denomirator: Joi.number(),
+    denomirator: Joi.any(),
     group_id: Joi.number(),
     class_id: Joi.number(),
   }),

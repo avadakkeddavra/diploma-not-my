@@ -143,6 +143,7 @@ class ScheduleController extends Controller {
     try {
       let instance = await schedule.findById(req.params.id);
       if(instance) {
+        req.body.denomirator = req.body.denomirator === 0 ? null : req.body.denomirator;
         instance = await instance.update(req.body);
         res.send(instance);
       } else {
