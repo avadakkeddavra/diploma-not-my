@@ -19,7 +19,7 @@
     "mysql2": "^1.6.1",
     "path": "^0.12.7",
     "pug": "^2.0.3",
-    "sequelize": "^4.38.0"
+    "sequelize": "^5.15.1"
   },
   "_moduleAliases": {
     "@controller": "./app/Controllers",
