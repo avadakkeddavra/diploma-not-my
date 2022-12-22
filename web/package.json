@@ -12,7 +12,7 @@
     "express-mailer": "^0.3.1",
     "file-system": "^2.2.2",
     "joi": "^13.7.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "module-alias": "^2.1.0",
     "moment": "^2.22.2",
     "mysql-migrations": "^1.0.6",
